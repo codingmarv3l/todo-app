@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
 const ToDoItem = (props) => {
@@ -7,6 +7,11 @@ const ToDoItem = (props) => {
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [editedTodo, setEditedTodo] = useState("");
 
+  const editFieldRef = useRef(null);
+  const editBtnRef = useRef(null);
+
+  const wasEditing = usePrevious(editingTaskId);
+
   const handleTaskUpdate = (e) => {
     e.preventDefault();
     editTask(editingTaskId, editedTodo);
@@ -14,6 +19,14 @@ const ToDoItem = (props) => {
     setEditingTaskId(null);
     console.log(editedTodo);
   };
+
+  useEffect(() => {
+    if (wasEditing === null && editingTaskId !== null) {
+      editFieldRef.current.focus();
+    } else if (wasEditing !== null && editingTaskId === null) {
+      editBtnRef.current.focus();
+    }
+  }, [wasEditing, editingTaskId]);
 
   return (
     <div className="todoLists">
@@ -28,6 +41,7 @@ const ToDoItem = (props) => {
                 type="text"
                 placeholder="Update task"
                 className="formInput"
+                ref={editFieldRef}
               />
               <button
                 type="button"
@@ -66,7 +80,14 @@ const ToDoItem = (props) => {
                   <FaTrash className="delete" width={24} height={24} />
                 </button>
 
-                <button aria-label="Update Task">
+                <button
+                  aria-label="Update Task"
+                  onClick={() => {
+                    setEditedTodo(task.task);
+                    setEditingTaskId(task.id);
+                  }}
+                  ref={editBtnRef}
+                >
                   <FaEdit className="edit" width={24} height={24} />
                 </button>
               </div>
@@ -77,5 +98,13 @@ const ToDoItem = (props) => {
     </div>
   );
 };
+
+function usePrevious(value) {
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current = value;
+  });
+  return inputRef.current;
+}
 
 export default ToDoItem;
