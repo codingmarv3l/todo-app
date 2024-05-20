@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
 const ToDoItem = (props) => {
-  const { tasks, handleCheck } = props;
+  const { tasks, handleCheck, deleteTask } = props;
 
   return (
     <div className="todoLists">
@@ -23,7 +23,10 @@ const ToDoItem = (props) => {
             </label>
 
             <div className="todoActions">
-              <button aria-label="Delete Task">
+              <button
+                aria-label="Delete Task"
+                onClick={() => deleteTask(task.id)}
+              >
                 <FaTrash className="delete" width={24} height={24} />
               </button>
 

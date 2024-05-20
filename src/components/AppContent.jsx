@@ -36,6 +36,11 @@ const AppContent = () => {
     setAndSaveTasks(toDos);
   };
 
+  const deleteTask = (id) => {
+    const toDos = tasks.filter((task) => task.id !== id);
+    setAndSaveTasks(toDos);
+  };
+
   return (
     <div className="appContent">
       <header>
@@ -51,6 +56,7 @@ const AppContent = () => {
         <ToDoItem
           tasks={tasks}
           handleCheck={handleCheck}
+          deleteTask={deleteTask}
         />
       ) : (
         <p className="message">Add tasks to see your to do's</p>
