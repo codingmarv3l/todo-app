@@ -41,6 +41,16 @@ const AppContent = () => {
     setAndSaveTasks(toDos);
   };
 
+  const editTask = (id, newTodo) => {
+    const editedTask = tasks.map((task) => {
+      if (id === task.id) {
+        return { ...task, task: newTodo };
+      }
+      return task;
+    });
+    setAndSaveTasks(editedTask);
+  };
+
   return (
     <div className="appContent">
       <header>
@@ -57,6 +67,7 @@ const AppContent = () => {
           tasks={tasks}
           handleCheck={handleCheck}
           deleteTask={deleteTask}
+          editTask={editTask}
         />
       ) : (
         <p className="message">Add tasks to see your to do's</p>
