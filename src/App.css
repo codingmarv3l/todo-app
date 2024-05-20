@@ -102,3 +102,141 @@
   font-size: 20px;
 }
 
+.todoLists {
+  background-color: var(--bg-3);
+  margin: 40px 30px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.item {
+  padding: 12px;
+  background: var(--bg-2);
+  background-color: #eee;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.item:hover,
+.item:focus-within {
+  outline: 2px solid #05445e;
+}
+
+.todoDetails {
+  position: relative;
+  display: flex;
+  color: #888;
+  gap: 16px;
+  padding-left: 35px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* checkbox styles */
+.todoDetails > label::before,
+.todoDetails > input[type="checkbox"] {
+  height: 34px;
+  width: 38px;
+  left: -2px;
+  top: -4px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.todoDetails > input[type="checkbox"] {
+  -webkit-font-smoothing: antialiased;
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.todoDetails > label {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 4px 15px 4px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.todoDetails > label::before {
+  position: absolute;
+  background: transparent;
+  border: 2px solid currentcolor;
+  content: "";
+  transition: all 0.2s ease;
+}
+
+.todoDetails > input[type="checkbox"]:focus-visible + label::before {
+  border-width: 4px;
+  outline: 3px dashed #05445e;
+}
+
+.todoDetails > label::after {
+  position: absolute;
+  background: transparent;
+  border: solid;
+  border-width: 0 0 3.5px 3.5px;
+  border-top-color: transparent;
+  box-sizing: content-box;
+  color: #05445e;
+  content: "";
+  height: 5px;
+  width: 20px;
+  left: 6px;
+  opacity: 0;
+  top: 10px;
+  transform: rotate(-45deg);
+  transition: opacity 0.2s ease;
+}
+
+.todoDetails > input[type="checkbox"]:checked + label::after {
+  opacity: 1;
+}
+
+/* end of checckbox styles */
+
+.task {
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: capitalize;
+  word-break: break-all;
+  align-items: center;
+}
+
+.todoActions {
+  display: flex;
+  gap: 16px;
+}
+
+.todoActions button {
+  color: #888;
+  margin-right: 10px;
+  font-size: 16px;
+  border: none;
+  opacity: 0.7;
+  transform: 0.1s;
+}
+
+.todoActions button:last-of-type {
+  margin: 0;
+}
+
+.todoActions button .delete {
+  color: crimson;
+}
+
+.todoActions button:hover {
+  opacity: 1;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.icon:hover {
+  background-color: var(--bg-3);
+}

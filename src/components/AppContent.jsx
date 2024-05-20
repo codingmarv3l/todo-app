@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ToDoForm from "./ToDoForm";
+import ToDoItem from "./ToDoItem";
 
 const AppContent = () => {
   const [tasks, setTasks] = useState(
@@ -45,6 +46,15 @@ const AppContent = () => {
         setNewTask={setNewTask}
         handleSubmit={handleSubmit}
       />
+
+      {tasks.length ? (
+        <ToDoItem
+          tasks={tasks}
+          handleCheck={handleCheck}
+        />
+      ) : (
+        <p className="message">Add tasks to see your to do's</p>
+      )}
     </div>
   );
 };
