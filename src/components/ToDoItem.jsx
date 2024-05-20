@@ -33,7 +33,7 @@ const ToDoItem = (props) => {
       {tasks.map((task) => (
         <div key={task.id} className="item">
           {editingTaskId === task.id ? (
-            <form onSubmit={handleTaskUpdate} className="todoForm">
+            <form onSubmit={handleTaskUpdate} className="editForm">
               <input
                 id={task.id}
                 value={editedTodo}
