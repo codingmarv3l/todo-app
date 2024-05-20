@@ -207,6 +207,11 @@
   align-items: center;
 }
 
+.task.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
 .todoActions {
   display: flex;
   gap: 16px;

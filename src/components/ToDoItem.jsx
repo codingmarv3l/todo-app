@@ -17,7 +17,9 @@ const ToDoItem = (props) => {
               checked={task.completed}
             />
             <label htmlFor={task.id} onDoubleClick={() => handleCheck(task.id)}>
-              <p className="task"> {task.task}</p>
+              <p className={`task ${task.completed ? "completed" : ""}`}>
+                {task.task}
+              </p>
             </label>
 
             <div className="todoActions">
