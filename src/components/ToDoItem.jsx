@@ -7,12 +7,20 @@ const ToDoItem = (props) => {
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [editedTodo, setEditedTodo] = useState("");
 
+  const handleTaskUpdate = (e) => {
+    e.preventDefault();
+    editTask(editingTaskId, editedTodo);
+    setEditedTodo("");
+    setEditingTaskId(null);
+    console.log(editedTodo);
+  };
+
   return (
     <div className="todoLists">
       {tasks.map((task) => (
         <div key={task.id} className="item">
           {editingTaskId === task.id ? (
-            <form className="todoForm">
+            <form onSubmit={handleTaskUpdate} className="todoForm">
               <input
                 id={task.id}
                 value={editedTodo}
